@@ -2,7 +2,7 @@
  * sample26
  * スペースキーでコスチューム切り替え
  */
-import {Pg, Lib} from "tscratch3likejs/s3lib-importer";
+import {Pg, Lib} from "@amami-harhid/tscratch3likejs/s3lib-importer/index.js";
 import type {S3PlayGround} from "@typeJS/s3PlayGround";
 import type {S3Stage} from "@typeJS/s3Stage";
 import type {S3Sprite} from "@typeJS/s3Sprite";

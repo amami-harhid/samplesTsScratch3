@@ -7,7 +7,7 @@
  * 実装上の上限はない（ただし受信登録数が極端に多いときは動きが遅くなるかも）
  */
 
-import {Pg, Lib} from "tscratch3likejs/s3lib-importer";
+import {Pg, Lib} from "@amami-harhid/tscratch3likejs/s3lib-importer";
 import type {S3PlayGround} from "@typeJS/s3PlayGround";
 import type {S3Stage} from "@typeJS/s3Stage";
 import type {S3Sprite, SayProperty} from "@typeJS/s3Sprite";

@@ -2,7 +2,7 @@
  * test of sample26
  * 質問を出す
  */
-import {Pg} from "tscratch3likejs/s3lib-importer";
+import {Pg} from "@amami-harhid/tscratch3likejs/s3lib-importer";
 import type {S3PlayGround} from "@typeJS/s3PlayGround";
 
 import {StageEx} from './sub/stage';

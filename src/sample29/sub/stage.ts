@@ -1,4 +1,4 @@
-import {Lib} from "tscratch3likejs/s3lib-importer";
+import {Lib} from "@amami-harhid/tscratch3likejs/s3lib-importer";
 import {Constants} from "./Constant";
 
 export class StageEx extends Lib.Stage {
@@ -32,8 +32,8 @@ export class StageEx extends Lib.Stage {
         for(;;){
             // 処理が終わるまで待つために await をつける
             await this.Sound.playUntilDone(Constants.Chill);
-            await this.Sound.setOption(Lib.SoundOption.VOLUME, 50);
-            await this.Sound.setOption(Lib.SoundOption.PITCH, -5);
+            await this.Sound.changeOptionValue(Lib.SoundOption.VOLUME, 50);
+            await this.Sound.changeOptionValue(Lib.SoundOption.PITCH, -5);
             yield;
         }    
     }

@@ -7,7 +7,7 @@
     "moduleResolution": "node",
     "baseUrl": "./",
     "paths": {
-      "@typeJS/*": ["./node_modules/tscratch3likejs/types/scratchjs/*"],
+      "@typeJS/*": ["./node_modules/@amami-harhid/tscratch3likejs/types/scratchjs/*"],
     },
     "sourceMap": true,
     "outDir": "./build",
