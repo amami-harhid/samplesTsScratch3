@@ -1,20 +1,9 @@
-/**
- * sample26
- * スペースキーでコスチューム切り替え
- */
-//import {PlayGround, Library} from "../../node_modules/@amami-harhid/scratch3likejslib/build/index.js";
-import type {S3PlayGround} from "@typeJS/s3PlayGround";
-import type {S3Stage} from "@typeJS/s3Stage";
-import type {S3Sprite} from "@typeJS/s3Sprite";
-
 async function main() {
     const module = await import('https://amami-harhid.github.io/scratch3likejslib/build/index.js');
     console.log(module);
     const Pg = module.PlayGround;
     const Lib = module.Library;
-
-    Pg.title = "【Sample26】スペースキーでコスチューム切り替え"
-    
+    Pg.title = "【Sample26】スペースキーでコスチューム切り替え";
     const Apple = "Apple";
     const Arrow1_a = "Arrow1-a";
     const Ballerina_a = "Ballerina-a";
@@ -52,17 +41,14 @@ async function main() {
     const Glow_1 = "Glow-1";
     const Gobo_a = "Gobo-a";
     const Story_Z_3 = "story-Z-3";
-    const Jurassic:string = "Jurassic";
-    const Chill:string = "Chill";
-    const Rip:string = "Rip";
-    
-    
-    let stage: S3Stage;
-    let sprite: S3Sprite;
-    
-    Pg.preload = async function preload(this:S3PlayGround) {
-        this.Image.load('../../assets/Jurassic.svg', Jurassic );
-        this.Sound.load('../../assets/Chill.wav', Chill );
+    const Jurassic = "Jurassic";
+    const Chill = "Chill";
+    const Rip = "Rip";
+    let stage;
+    let sprite;
+    Pg.preload = async function preload() {
+        this.Image.load('../../assets/Jurassic.svg', Jurassic);
+        this.Sound.load('../../assets/Chill.wav', Chill);
         this.Sound.load('../../assets/Rip.wav', Rip);
         this.Image.load('../../assets/Apple.svg', Apple);
         this.Image.load('../../assets/Arrow1-a.svg', Arrow1_a);
@@ -101,122 +87,105 @@ async function main() {
         this.Image.load('../../assets/Glow-1.svg', Glow_1);
         this.Image.load('../../assets/Gobo-a.svg', Gobo_a);
         this.Image.load('../../assets/Story-Z-3.svg', Story_Z_3);
-    
-    }
-    
+    };
     Pg.prepare = async function prepare() {
         stage = new Lib.Stage();
-        await stage.Image.add( Jurassic );
-        await stage.Sound.add( Chill );
+        await stage.Image.add(Jurassic);
+        await stage.Sound.add(Chill);
         sprite = new Lib.Sprite("sprite");
         sprite.Looks.hide(); // 非表示
-        await sprite.Image.add( Apple );
-        await sprite.Image.add( Arrow1_a );
-        await sprite.Image.add( Ballerina_a );
-        await sprite.Image.add( Balloon1_a );
-        await sprite.Image.add( Bear_a );
-        await sprite.Image.add( Bell1 );
-        await sprite.Image.add( Bowl_a );
-        await sprite.Image.add( Bowtie );
-        await sprite.Image.add( Broom );
-        await sprite.Image.add( Bread );
-        await sprite.Image.add( Cake_a );
-    
-        await sprite.Image.add( Casey_a );
-        await sprite.Image.add( CatFlying_a );
-        await sprite.Image.add( Catcher_a );
-        await sprite.Image.add( Chick_a );
-        await sprite.Image.add( CityBus_a );
-        await sprite.Image.add( Cloud );
-        await sprite.Image.add( Crab_a );
-        await sprite.Image.add( Crystal_b );
-        await sprite.Image.add( Dinosaur1_a );
-        await sprite.Image.add( Dinosaur2_a );
-        await sprite.Image.add( Dinosaur3_a );
-        await sprite.Image.add( Dinosaur4_a );
-    
-        await sprite.Image.add( Diver2 );
-        await sprite.Image.add( Dog1_a );
-        await sprite.Image.add( Dog2_c );
-        await sprite.Image.add( Donut );
-        await sprite.Image.add( Dorian_a );
-        await sprite.Image.add( Dove_a );
-    
-        await sprite.Image.add( Dragon1_b );
-        await sprite.Image.add( Dragon_a );
-        await sprite.Image.add( Glow_1 );
-        await sprite.Image.add( Gobo_a );
-        await sprite.Image.add( Story_Z_3 );
-    
-        await sprite.Sound.add( Rip );
+        await sprite.Image.add(Apple);
+        await sprite.Image.add(Arrow1_a);
+        await sprite.Image.add(Ballerina_a);
+        await sprite.Image.add(Balloon1_a);
+        await sprite.Image.add(Bear_a);
+        await sprite.Image.add(Bell1);
+        await sprite.Image.add(Bowl_a);
+        await sprite.Image.add(Bowtie);
+        await sprite.Image.add(Broom);
+        await sprite.Image.add(Bread);
+        await sprite.Image.add(Cake_a);
+        await sprite.Image.add(Casey_a);
+        await sprite.Image.add(CatFlying_a);
+        await sprite.Image.add(Catcher_a);
+        await sprite.Image.add(Chick_a);
+        await sprite.Image.add(CityBus_a);
+        await sprite.Image.add(Cloud);
+        await sprite.Image.add(Crab_a);
+        await sprite.Image.add(Crystal_b);
+        await sprite.Image.add(Dinosaur1_a);
+        await sprite.Image.add(Dinosaur2_a);
+        await sprite.Image.add(Dinosaur3_a);
+        await sprite.Image.add(Dinosaur4_a);
+        await sprite.Image.add(Diver2);
+        await sprite.Image.add(Dog1_a);
+        await sprite.Image.add(Dog2_c);
+        await sprite.Image.add(Donut);
+        await sprite.Image.add(Dorian_a);
+        await sprite.Image.add(Dove_a);
+        await sprite.Image.add(Dragon1_b);
+        await sprite.Image.add(Dragon_a);
+        await sprite.Image.add(Glow_1);
+        await sprite.Image.add(Gobo_a);
+        await sprite.Image.add(Story_Z_3);
+        await sprite.Sound.add(Rip);
         // 縦横 200%のサイズにする
-        sprite.Looks.setSize({w:200, h:200}); 
-    
-    }
-    
-    
+        sprite.Looks.setSize({ w: 200, h: 200 });
+    };
     Pg.setting = async function setting() {
-    
-        
         // 旗が押されたときの動作
-        stage.Event.whenFlag(async function*(this:S3Stage){
+        stage.Event.whenFlag(async function* () {
             await this.Sound.setOption(Lib.SoundOption.VOLUME, 5);
             // ずっと繰り返す
-            for(;;){
+            for (;;) {
                 // 終わるまで音を鳴らす
                 await this.Sound.playUntilDone(Chill);
                 yield;
             }
         });
-        
         // 旗が押されたときの動作
-        sprite.Event.whenFlag(async function(this:S3Sprite){
+        sprite.Event.whenFlag(async function () {
             // 初期設定
-            this.Motion.gotoXY( 0, 0 );
+            this.Motion.gotoXY(0, 0);
             // サイズ
-            this.Looks.setSize( 200, 200 ); 
+            this.Looks.setSize(200, 200);
             // 表示
             this.Looks.show();
             // 回転しない
             this.Motion.setRotationStyle(Lib.RotationStyle.DONT_ROTATE);
         });
-    
         // 旗が押されたときの動作
-        sprite.Event.whenFlag(async function*(this:S3Sprite){
+        sprite.Event.whenFlag(async function* () {
             // スプライトに登録されている画像の名前を配列として取り出す
             const SpriteImageNames = this.Image.names();
-    
             // ずっと繰り返す
-            for(;;){
+            for (;;) {
                 // イメージ名の配列をシャッフルする（順番をランダムに変える）
                 shuffle(SpriteImageNames);
                 // イメージ名の配列
-                for(const name of SpriteImageNames){
+                for (const name of SpriteImageNames) {
                     // スペースキーが押されていない間、待つ
-                    await this.Control.waitWhile( ()=>Lib.keyIsNotDown('Space'));
+                    await this.Control.waitWhile(() => Lib.keyIsNotDown('Space'));
                     // 音を鳴らす
                     this.Sound.play(Rip);
                     // コスチュームを切り替える
                     this.Looks.switchCostume(name);
                     // 0.1秒待つ
-                    await this.Control.wait(0.1); 
+                    await this.Control.wait(0.1);
                     yield;
                 }
                 yield;
             }
         });
-    }
+    };
     /**
      * 配列をシャッフルする
      * @param array 配列
      */
-    function shuffle(array: string[]){
+    function shuffle(array) {
         array.sort(() => Math.random() - 0.5);
     }
-    
-
 }
 main();
-
-
-
+//export {};
+//# sourceMappingURL=index.js.map

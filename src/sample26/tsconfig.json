@@ -1,4 +1,23 @@
 {
-  "extends": "../../tsconfig",
-  "include": ["./*.ts"],
+  "include": ["./**/*.ts"],
+  "exclude": ["./node_modules/*"],
+  "compilerOptions": {
+    "target": "es2020", // es2018,es2019,es2020,esnext が適している
+    "module": "esnext",
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "paths": {
+      "@typeJS/*": ["../../node_modules/@amami-harhid/tscratch3likejs/types/scratchjs/*"],
+      "@amami-harhid/*": ["../../node_modules/@amami-harhid/*"],
+    },
+    "sourceMap": true,
+    "outDir": "./build",
+    "importHelpers": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitAny": false,     // 暗黙的な「any」型を許可。
+    "noImplicitThis": true,     // 暗黙的なthisの型推定を「禁止」。 
+    "skipLibCheck": true
+  }
 }

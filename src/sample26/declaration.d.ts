@@ -1,0 +1,1 @@
+declare module '*/scratch3likejslib/build/index.js';
