@@ -2,7 +2,7 @@
  * Sample11
  * スプライト（CAT)を １秒で「どこかの」場所へ移動する
  */
-import {Pg, Lib} from "@amami-harhid/tscratch3likejs/s3lib-importer";
+import {Pg, Lib} from "@tscratch3/tscratch3likejs/s3lib-importer";
 import type {S3PlayGround} from "@typeJS/s3PlayGround";
 import type {S3Stage} from "@typeJS/s3Stage";
 import type {S3Sprite} from "@typeJS/s3Sprite";

@@ -1,8 +1,8 @@
 /**
- * test of sample26
- * 質問を出す
+ * test of sample29
+ * クラス定義のサンプル（StageEx,Catクラス定義) 
  */
-import {Pg} from "@amami-harhid/tscratch3likejs/s3lib-importer";
+import {Pg} from "@tscratch3/tscratch3likejs/s3lib-importer";
 import type {S3PlayGround} from "@typeJS/s3PlayGround";
 
 import {StageEx} from './sub/stage';

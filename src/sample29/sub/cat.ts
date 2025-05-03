@@ -1,4 +1,4 @@
-import {Lib} from "@amami-harhid/tscratch3likejs/s3lib-importer";
+import {Lib} from "@tscratch3/tscratch3likejs/s3lib-importer";
 
 export class Cat extends Lib.Sprite {
 

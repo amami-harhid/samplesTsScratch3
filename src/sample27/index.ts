@@ -1,12 +1,13 @@
 /**
  * sample27
- * ネコが色にさわったらスコアアップ
+ * ネコが色にさわったらスコアアップ、
+ * 変数モニターを表示する
  */
-import {Pg, Lib} from "@amami-harhid/tscratch3likejs/s3lib-importer";
+import {Pg, Lib} from "@tscratch3/tscratch3likejs/s3lib-importer";
 import type {S3PlayGround} from "@typeJS/s3PlayGround";
 import type {S3Stage} from "@typeJS/s3Stage";
 import type {S3Sprite} from "@typeJS/s3Sprite";
-import type {S3Monitors} from "@typeJS/s3Monitors";
+import type {S3Monitors,S3Monitor} from "@typeJS/s3Monitors";
 
 Pg.title = "【Sample27】色に触れたときカウントアップ ※雲(薄い水色), 植物(オレンジ色)"
 
@@ -16,11 +17,14 @@ const Rip:string = "Rip";
 const Cat01:string = "Cat01";
 const Cat02:string = "Cat02";
 const MonitorNameSCORE:string = 'SCORE';
+const MonitorNameSecond:string = 'Seconds';
 
 let stage: S3Stage;
 let cat: S3Sprite
 let monitors: S3Monitors;
-let score = 0;
+let score: S3Monitor;
+let seconds: S3Monitor;
+
 const AssetHost = "https://amami-harhid.github.io/scratch3likejslib/web";
 
 Pg.preload = async function preload(this:S3PlayGround) {
@@ -47,10 +51,16 @@ Pg.prepare = async function prepare() {
     await cat.Sound.add( Rip );
 
     monitors = new Lib.Monitors();
-    monitors.add(MonitorNameSCORE);
-    monitors.get(MonitorNameSCORE).setPosition({x:5, y:20});
-    monitors.get(MonitorNameSCORE).label = "スコア";
-    monitors.get(MonitorNameSCORE).value = 0;
+    monitors.add(MonitorNameSCORE, 'スコア');
+    score = monitors.get(MonitorNameSCORE);
+    score.position = {x:-240, y:180};
+    score.value = 0;
+
+    monitors.add(MonitorNameSecond, '秒数');
+    seconds = monitors.get(MonitorNameSecond);
+    seconds.position = {x:-240, y:150};
+    seconds.value = 0;
+
 }
 
 Pg.setting = async function setting() {
@@ -64,6 +74,19 @@ Pg.setting = async function setting() {
         this.Event.broadcast('START');
     });
 
+    /**
+     * メッセージ(START)を受け取ったときの動き
+     */
+    stage.Event.whenBroadcastReceived('START', async function*(this:S3Stage){
+        // ずっと繰り返す
+        for(;;){
+            // 1秒待つ
+            await this.Control.wait(1.0);
+            seconds.value += 1;
+            yield;
+        }
+    })
+    
     /**
      * メッセージ(START)を受け取ったときの動き
      */
@@ -117,7 +140,7 @@ Pg.setting = async function setting() {
             if(await this.Sensing.isTouchingToColor(ColorPlantOrange)){
                 this.Sensing.resetTimer();
                 //カウントアップ
-                monitors.get(MonitorNameSCORE).value = ++score;
+                score.value += 1;
                 // 音を鳴らす
                 this.Sound.play( Rip );
                 // オレンジの植物の色にふれている間、待つ
@@ -129,7 +152,7 @@ Pg.setting = async function setting() {
             if(await this.Sensing.isTouchingToColor(ColorCloud)){
                 this.Sensing.resetTimer();
                 //カウントアップ
-                monitors.get(MonitorNameSCORE).value = ++score;
+                score.value += 1;
                 // 音を鳴らす
                 this.Sound.play( Rip );
                 // 雲の色にふれている間、待つ

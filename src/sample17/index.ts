@@ -4,7 +4,7 @@
  * スプライト（butterfly) : 非表示、クローンされたら表示に切り替える、クローンは指定した時間数（ﾐﾘ秒）だけ生きている。
  * 
  */
-import {Pg, Lib} from "@amami-harhid/tscratch3likejs/s3lib-importer";
+import {Pg, Lib} from "@tscratch3/tscratch3likejs/s3lib-importer";
 import type {S3PlayGround} from "@typeJS/s3PlayGround";
 import type {S3Stage} from "@typeJS/s3Stage";
 import type {S3Sprite} from "@typeJS/s3Sprite";

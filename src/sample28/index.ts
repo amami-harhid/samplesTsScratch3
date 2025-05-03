@@ -3,10 +3,11 @@
  * スプライトをクリックしたとき、ステージをクリックしたときに
  * 質問を出す。
  */
-import {Pg, Lib} from "@amami-harhid/tscratch3likejs/s3lib-importer";
+import {Pg, Lib} from "@tscratch3/tscratch3likejs/s3lib-importer";
 import type {S3PlayGround} from "@typeJS/s3PlayGround";
 import type {S3Stage} from "@typeJS/s3Stage";
 import type {S3Sprite} from "@typeJS/s3Sprite";
+import type {S3Monitors,S3Monitor} from "@typeJS/s3Monitors";
 
 Pg.title = "【Sample28】質問をする(ネコをクリック、ステージをクリック)"
 
@@ -16,8 +17,17 @@ const Cat01:string = "Cat01";
 const Cat02:string = "Cat02";
 
 let stage: S3Stage;
-let cat: S3Sprite
+let cat: S3Sprite;
+let monitors: S3Monitors;
+let who: S3Monitor;
+let answer: S3Monitor;
+
 const AssetHost = "https://amami-harhid.github.io/scratch3likejslib/web";
+
+const MonitorId = {
+    WHO : 'who',
+    ANSER: 'answer',
+}
 
 Pg.preload = async function preload(this:S3PlayGround) {
     this.Image.load(AssetHost+'/assets/Jurassic.svg', Jurassic01 );
@@ -39,6 +49,19 @@ Pg.prepare = async function prepare() {
     // コスチュームを追加
     await cat.Image.add( Cat01 );
     await cat.Image.add( Cat02 );
+
+    // 変数モニター
+    monitors = new Lib.Monitors();
+    monitors.add(MonitorId.WHO, '誰が？');
+    who = monitors.get(MonitorId.WHO);
+    monitors.add(MonitorId.ANSER, '答え');
+    answer = monitors.get(MonitorId.ANSER);
+
+    who.text = '';
+    answer.text = '';
+    
+    who.position = {x:-240, y:180};
+    answer.position = {x:-240, y:150};
 }
 
 Pg.setting = async function setting() {
@@ -53,6 +76,8 @@ Pg.setting = async function setting() {
         await this.Looks.sayForSecs('連続してクリックすると前回の質問応答の後に質問が続くよ',1);
         await this.Looks.sayForSecs('答えはコンソールへ出力するよ',1);
         this.Looks.say('');
+        who.text = '';
+        answer.text = '';
         // メッセージを送る
         this.Event.broadcast('START');
         // ずっと繰り返す
@@ -83,8 +108,10 @@ Pg.setting = async function setting() {
     stage.Event.whenBroadcastReceived('START', async function(this:S3Stage){
         // STARTを受け取ったら クリックの動きを始める
         this.Event.whenClicked(async function(this:S3Stage){
-            const answer = await this.Sensing.askAndWait('ステージから質問をするよ');
-            await this.Event.broadcastAndWait('ANSWER', answer, "ステージ");
+            who.text = 'ステージ';
+            answer.text = '';
+            const answerValue = await this.Sensing.askAndWait('ステージから質問をするよ');
+            await this.Event.broadcastAndWait('ANSWER', answerValue, "ステージ");
         });
     });
 
@@ -94,8 +121,10 @@ Pg.setting = async function setting() {
     cat.Event.whenBroadcastReceived('START', async function(this:S3Sprite){
         // STARTを受け取ったら クリックの動きを始める
         this.Event.whenClicked(async function(this:S3Sprite){
-            const answer = await this.Sensing.askAndWait('ネコから質問をするよ');
-            await this.Event.broadcastAndWait('ANSWER', answer, "ネコ");
+            who.text = 'ネコ';
+            answer.text = '';
+            const answerValue = await this.Sensing.askAndWait('ネコから質問をするよ');
+            await this.Event.broadcastAndWait('ANSWER', answerValue, "ネコ");
         });
     });
 
@@ -131,10 +160,11 @@ Pg.setting = async function setting() {
     /**
      * ANSWERを受け取ったときの動き（ネコ） 
      */ 
-    cat.Event.whenBroadcastReceived('ANSWER', async function(this:S3Sprite, answer:string, from:string){
+    cat.Event.whenBroadcastReceived('ANSWER', async function(this:S3Sprite, answerValue:string, from:string){
         // 1秒間、答えを考える。
-        const message = `${from}の質問への答えは 『${answer}』でした`;
+        const message = `${from}の質問への答えは 『${answerValue}』でした`;
         console.log(message);
+        answer.text = answerValue;
         await this.Looks.thinkForSecs(message, 1);
     });
 }

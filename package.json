@@ -10,9 +10,8 @@
   "type": "commonjs",
   "description": "",
   "devDependencies": {
-    "@amami-harhid/scratch3likejslib": "^0.0.4",
-    "@amami-harhid/tscratch3likejs": "^0.0.6",
     "@eslint/js": "^9.22.0",
+    "@tscratch3/tscratch3likejs": "^1.0.0-alpha.7",
     "@types/node": "^22.13.4",
     "eslint": "^9.22.0",
     "glob": "^10.4.5",
@@ -21,5 +20,8 @@
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.26.0",
     "webpack-cli": "^6.0.1"
+  },
+  "dependencies": {
+    "@tscratch3/scratch3likejslib": "^1.0.0-alpha.4"
   }
 }

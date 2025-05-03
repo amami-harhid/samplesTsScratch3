@@ -1,4 +1,4 @@
-import {Lib} from "@amami-harhid/tscratch3likejs/s3lib-importer";
+import {Lib} from "@tscratch3/tscratch3likejs/s3lib-importer";
 import {Constants} from "./Constant";
 
 export class StageEx extends Lib.Stage {
