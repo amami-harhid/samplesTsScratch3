@@ -5,6 +5,10 @@ samplesTsScratch3
 # Overview
 A collection of samples written in TypeScript for using scratch3LikeJsLib.
 
+このレポジトリはメンテを中止します(2025/5/10)。
+以降は、https://github.com/amami-harhid/tscratch3likejs
+にてメンテを続けます。
+
 # how to use 
 
 [Comparison with Scratch3](./documents/)
